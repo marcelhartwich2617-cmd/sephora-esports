@@ -1,0 +1,1290 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sephora E-Sports</title>
+<meta name="description" content="Discord-Startseite für die Sephora E-Sports Rocket-League-Community – Server-Bereiche, Einstieg und Beitritt.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --bg:#100a1c;
+    --bg-raise:#180f28;
+    --panel:#1e1433;
+    --panel-hi:#281a44;
+    --line:#3a2a58;
+    --ink:#ffffff;
+    --ink-dim:#c2b4dd;
+    --ink-faint:#8073a0;
+    --accent:#b266ff;
+    --accent-deep:#7c2ce0;
+    --accent-ink:#ffffff;
+    --accent2:#ffffff;
+    --radius:2px;
+  }
+
+  *{box-sizing:border-box;}
+  html{
+    color-scheme:dark;
+    scroll-behavior:smooth;
+    scroll-padding-top:84px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Big Shoulders Display', 'Arial Narrow', sans-serif;
+    text-transform:uppercase;
+    font-weight:800;
+    line-height:0.92;
+    letter-spacing:0.01em;
+    text-wrap:balance;
+    margin:0;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    letter-spacing:0.08em;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:0.72rem;
+    font-weight:600;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:1.4em;
+    height:2px;
+    background:var(--accent);
+    display:inline-block;
+  }
+
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent2);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 clamp(20px, 4vw, 48px);
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(16,10,28,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    padding:16px clamp(20px, 4vw, 48px);
+    max-width:1120px;
+    margin:0 auto;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+  }
+  .brand-mark{
+    width:30px;
+    height:30px;
+    flex:none;
+  }
+  .brand-word{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    font-size:1.05rem;
+    letter-spacing:0.02em;
+    white-space:nowrap;
+  }
+  .brand-word span{color:var(--accent);}
+
+  .links{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .links a{
+    text-decoration:none;
+    font-size:0.86rem;
+    font-weight:600;
+    color:var(--ink-dim);
+    transition:color 0.15s ease;
+  }
+  .links a:hover{color:var(--ink);}
+
+  @media (max-width:840px){
+    .links{display:none;}
+  }
+
+  .nav-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  .nav-toggle{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    width:38px;
+    height:38px;
+    flex:none;
+    background:transparent;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    cursor:pointer;
+  }
+  @media (max-width:840px){
+    .nav-toggle{display:inline-flex;}
+  }
+  .nav-toggle-bars,
+  .nav-toggle-bars::before,
+  .nav-toggle-bars::after{
+    width:16px;
+    height:2px;
+    background:var(--ink);
+    display:block;
+    transition:transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+  }
+  .nav-toggle-bars{
+    position:relative;
+  }
+  .nav-toggle-bars::before,
+  .nav-toggle-bars::after{
+    content:"";
+    position:absolute;
+    left:0;
+  }
+  .nav-toggle-bars::before{top:-6px;}
+  .nav-toggle-bars::after{top:6px;}
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bars{background:transparent;}
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bars::before{transform:translateY(6px) rotate(45deg);}
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bars::after{transform:translateY(-6px) rotate(-45deg);}
+
+  .nav-mobile{
+    border-top:1px solid var(--line);
+    background:var(--bg-raise);
+  }
+  .nav-mobile ul{
+    list-style:none;
+    margin:0;
+    padding:6px clamp(20px, 4vw, 48px) 14px;
+    display:grid;
+  }
+  .nav-mobile a{
+    display:block;
+    padding:12px 2px;
+    text-decoration:none;
+    color:var(--ink-dim);
+    font-weight:600;
+    font-size:0.95rem;
+    border-bottom:1px solid var(--line);
+    transition:color 0.15s ease;
+  }
+  .nav-mobile li:last-child a{border-bottom:none;}
+  .nav-mobile a:hover{color:var(--ink);}
+  @media (min-width:841px){
+    .nav-mobile{display:none !important;}
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 20px;
+    font-family:'Hanken Grotesk', sans-serif;
+    font-weight:700;
+    font-size:0.9rem;
+    text-decoration:none;
+    border:1px solid transparent;
+    border-radius:var(--radius);
+    cursor:pointer;
+    clip-path:polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    transition:transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-primary{
+    background:var(--accent-deep);
+    color:var(--accent-ink);
+  }
+  .btn-primary:hover{
+    transform:translateY(-1px);
+    background:var(--accent);
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    border-color:var(--line);
+  }
+  .btn-ghost:hover{
+    border-color:var(--ink-dim);
+    background:var(--panel);
+  }
+  .btn-sm{padding:9px 16px; font-size:0.82rem;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background:
+      linear-gradient(180deg, rgba(16,10,28,0.5) 0%, rgba(16,10,28,0.95) 100%);
+  }
+  .hero-fx{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    width:100%;
+    height:100%;
+    display:block;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:1;
+    padding:clamp(56px, 9vw, 96px) 0 clamp(48px, 7vw, 76px);
+    display:grid;
+    gap:26px;
+    max-width:640px;
+  }
+  .hero-text{
+    display:grid;
+    gap:26px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 4.6rem);
+  }
+  .hero h1 .accent-line{color:var(--accent);}
+  .hero-team{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-top:4px;
+  }
+  .hero-team .rule{
+    height:3px;
+    flex:1;
+    background:linear-gradient(90deg, var(--accent), transparent);
+    max-width:120px;
+  }
+  .hero-team span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    font-weight:600;
+    letter-spacing:0.16em;
+    color:var(--ink-dim);
+  }
+  .hero p.lede{
+    font-size:1.1rem;
+    line-height:1.6;
+    color:var(--ink-dim);
+    max-width:58ch;
+  }
+  .hero-ctas{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:6px;
+  }
+  .chip-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:18px;
+  }
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    font-weight:600;
+    letter-spacing:0.08em;
+    color:var(--ink-dim);
+    border:1px solid var(--line);
+    padding:6px 12px;
+    border-radius:100px;
+  }
+  .chip strong{color:var(--accent2); font-weight:600;}
+
+  /* ---------- TICKER ---------- */
+  .ticker-band{
+    background:var(--bg-raise);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+    padding:13px 0;
+  }
+  .ticker-track{
+    display:flex;
+    width:max-content;
+    animation:scroll-left 34s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{animation:none;}
+  }
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .ticker-track span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    font-weight:600;
+    letter-spacing:0.1em;
+    color:var(--ink-faint);
+    padding:0 20px;
+    white-space:nowrap;
+    border-right:1px solid var(--line);
+  }
+  .ticker-track span.hot{color:var(--accent);}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:clamp(56px, 9vw, 96px) 0;}
+  .section-head{
+    display:grid;
+    gap:14px;
+    max-width:620px;
+    margin-bottom:clamp(36px, 5vw, 56px);
+  }
+  .section-head h2{font-size:clamp(1.9rem, 4vw, 2.6rem);}
+  .section-head p{
+    color:var(--ink-dim);
+    font-size:1rem;
+    line-height:1.6;
+    margin:0;
+  }
+
+  /* ---------- FEATURES ---------- */
+  .feature-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .feature-card{
+    background:var(--panel);
+    padding:28px 26px;
+    grid-column:span 3;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    transition:background 0.18s ease, transform 0.15s ease;
+    will-change:transform;
+  }
+  .feature-card:hover{background:var(--panel-hi);}
+  .feature-card.lead{
+    grid-column:span 6;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    align-items:center;
+    gap:28px;
+    padding:34px 30px;
+  }
+  @media (max-width:720px){
+    .feature-grid{grid-template-columns:1fr;}
+    .feature-card{grid-column:span 1 !important;}
+    .feature-card.lead{grid-template-columns:1fr;}
+  }
+  .f-icon{
+    width:46px;
+    height:46px;
+    flex:none;
+    color:var(--accent);
+  }
+  .feature-card.lead .f-icon{
+    width:64px;
+    height:64px;
+  }
+  .f-icon svg{width:100%; height:100%;}
+  .feature-card h3{
+    font-size:1.15rem;
+    letter-spacing:0.01em;
+  }
+  .feature-card.lead h3{font-size:1.6rem;}
+  .feature-card p{
+    margin:0;
+    color:var(--ink-dim);
+    font-size:0.92rem;
+    line-height:1.55;
+  }
+  .f-tag{
+    align-self:flex-start;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    font-weight:600;
+    letter-spacing:0.1em;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- KNOWLEDGE (Ranks / Modes / Scene) ---------- */
+  .knowledge-block{padding:26px 0;}
+  .knowledge-block + .knowledge-block{border-top:1px solid var(--line);}
+  .k-head{
+    display:flex;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:4px;
+  }
+  .k-head h3{
+    font-size:1.3rem;
+  }
+  .k-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.05em;
+    color:var(--ink-faint);
+  }
+
+  .rank-ladder{
+    display:flex;
+    align-items:flex-end;
+    gap:5px;
+    height:96px;
+    margin:20px 0 14px;
+  }
+  .rank-bar{
+    flex:1;
+    height:calc(16px + var(--i) * 11px);
+    background:linear-gradient(180deg, var(--accent), rgba(178,102,255,0.2));
+    border-radius:2px 2px 0 0;
+    transform-origin:bottom;
+  }
+  .rank-bar.ssl{
+    background:linear-gradient(180deg, #ffffff, rgba(255,255,255,0.25));
+  }
+  .rank-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 16px;
+  }
+  .rank-legend span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.04em;
+    color:var(--ink-faint);
+  }
+  .rank-legend span.top{
+    color:var(--ink);
+    font-weight:600;
+  }
+
+  .modes-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+    margin-top:18px;
+  }
+  @media (max-width:600px){
+    .modes-grid{grid-template-columns:1fr;}
+  }
+  .mode-list{
+    list-style:none;
+    margin:12px 0 0;
+    padding:0;
+    display:grid;
+    gap:10px;
+  }
+  .mode-list li{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:0.95rem;
+    color:var(--ink);
+  }
+  .mode-list .mono{
+    background:var(--panel-hi);
+    border:1px solid var(--line);
+    padding:3px 8px;
+    border-radius:2px;
+    font-size:0.72rem;
+    color:var(--accent);
+    min-width:30px;
+    text-align:center;
+  }
+  .mode-list--extra li{
+    color:var(--ink-dim);
+    font-size:0.92rem;
+  }
+  .mode-list--extra li::before{
+    content:"";
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:var(--ink-faint);
+    display:inline-block;
+    flex:none;
+  }
+
+  .stat-row{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:18px;
+  }
+  @media (max-width:700px){
+    .stat-row{grid-template-columns:repeat(2, 1fr);}
+  }
+  .stat-tile{
+    background:var(--panel);
+    padding:20px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    transition:transform 0.15s ease;
+    will-change:transform;
+  }
+  .stat-num{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:1.7rem;
+    color:var(--accent);
+    line-height:1;
+    text-wrap:balance;
+  }
+  .stat-label{
+    font-size:0.78rem;
+    color:var(--ink-dim);
+    line-height:1.4;
+  }
+
+  /* ---------- STEPS ---------- */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0;
+    position:relative;
+  }
+  .steps::before{
+    content:"";
+    position:absolute;
+    top:26px;
+    left:0;
+    right:0;
+    height:2px;
+    background:linear-gradient(90deg, var(--accent), var(--accent2) 60%, transparent);
+    z-index:0;
+  }
+  @media (max-width:800px){
+    .steps{grid-template-columns:1fr; gap:32px;}
+    .steps::before{display:none;}
+  }
+  .step{
+    position:relative;
+    z-index:1;
+    padding-right:20px;
+    display:grid;
+    gap:12px;
+  }
+  .step-num{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--accent);
+    color:var(--ink);
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:1rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .step h3{
+    font-family:'Hanken Grotesk', sans-serif;
+    font-weight:700;
+    text-transform:none;
+    font-size:1.05rem;
+    letter-spacing:0;
+  }
+  .step p{
+    margin:0;
+    color:var(--ink-dim);
+    font-size:0.9rem;
+    line-height:1.55;
+  }
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    position:relative;
+    overflow:hidden;
+    margin:0 clamp(20px,4vw,48px);
+    padding:clamp(52px, 9vw, 88px) clamp(28px, 6vw, 64px);
+    background:
+      linear-gradient(160deg, rgba(16,10,28,0.88) 10%, rgba(16,10,28,0.6) 55%, rgba(16,10,28,0.92) 100%);
+    border:1px solid var(--line);
+    border-top:3px solid var(--accent);
+    text-align:center;
+    clip-path:polygon(0 18px, 18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
+  }
+  .cta-visual{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    opacity:0.08;
+    pointer-events:none;
+  }
+  .cta-content{
+    position:relative;
+    z-index:1;
+  }
+  .cta-band h2{
+    font-size:clamp(2.1rem, 6vw, 3.4rem);
+  }
+  .cta-band h2 .accent-line{color:var(--accent);}
+  .cta-band p{
+    color:var(--ink-dim);
+    max-width:52ch;
+    margin:18px auto 30px;
+    font-size:1.02rem;
+    line-height:1.6;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 0 44px;
+  }
+  .footer-inner{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:24px;
+  }
+  .footer-links{
+    display:flex;
+    gap:22px;
+    list-style:none;
+    margin:0;
+    padding:0;
+    flex-wrap:wrap;
+  }
+  .footer-links a{
+    text-decoration:none;
+    color:var(--ink-dim);
+    font-size:0.85rem;
+    font-weight:600;
+  }
+  .footer-links a:hover{color:var(--ink);}
+  .footer-note{
+    color:var(--ink-faint);
+    font-size:0.78rem;
+    line-height:1.6;
+    max-width:46ch;
+    margin-top:14px;
+  }
+  .footer-bottom{
+    margin-top:28px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    color:var(--ink-faint);
+    font-size:0.78rem;
+    font-family:'IBM Plex Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 26L16 4L20 12L8 26H4Z" fill="#b266ff"/>
+        <path d="M14 26L22 12L28 12L20 26H14Z" fill="#ffffff"/>
+      </svg>
+      <span class="brand-word">Sephora <span>E-Sports</span></span>
+    </a>
+    <ul class="links">
+      <li><a href="#rocket-league">Rocket League</a></li>
+      <li><a href="#bereiche">Server</a></li>
+      <li><a href="#wissen">Wissen</a></li>
+      <li><a href="#start">Einstieg</a></li>
+      <li><a href="#beitreten">Regeln</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="btn btn-primary btn-sm" href="https://discord.gg/37sKKK6t8" target="_blank" rel="noopener noreferrer">Discord beitreten</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMobile" aria-label="Menü öffnen">
+        <span class="nav-toggle-bars"></span>
+      </button>
+    </div>
+  </div>
+  <div class="nav-mobile" id="navMobile" hidden>
+    <ul>
+      <li><a href="#rocket-league">Rocket League</a></li>
+      <li><a href="#bereiche">Server</a></li>
+      <li><a href="#wissen">Wissen</a></li>
+      <li><a href="#start">Einstieg</a></li>
+      <li><a href="#beitreten">Regeln</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="rocket-league">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <canvas id="heroFx" class="hero-fx" aria-hidden="true"></canvas>
+    <div class="wrap hero-inner">
+      <div class="hero-text">
+        <span class="eyebrow">Discord · Rocket League Community</span>
+        <h1>One Team.<br><span class="accent-line">One Goal.</span></h1>
+        <div class="hero-team">
+          <span>SEPHORA E-SPORTS</span>
+          <div class="rule"></div>
+        </div>
+        <p class="lede">
+          Willkommen auf der offiziellen Website von Sephora E-Sports. Hier geht es um Rocket League,
+          fairen Wettbewerb und eine Community, die gemeinsam besser werden will &mdash; egal ob du im
+          Ranked pusht oder einfach entspannt mitfahren willst.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://discord.gg/37sKKK6t8" target="_blank" rel="noopener noreferrer">Discord beitreten</a>
+          <a class="btn btn-ghost" href="#beitreten">Regeln lesen</a>
+        </div>
+        <div class="chip-row">
+          <span class="chip"><strong>3v3</strong> &amp; Ranked</span>
+          <span class="chip">Alle Ränge willkommen</span>
+          <span class="chip">EU-Fokus</span>
+          <span class="chip">Teamsuche aktiv</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker-band" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="hot">RANKED</span><span>CUSTOM LOBBIES</span><span>3V3</span><span class="hot">CUPS</span><span>SCRIMS</span><span>TEAM-FINDER</span><span class="hot">TIKTOK CLIPS</span><span>MECHANIK-TRAINING</span>
+      <span class="hot">RANKED</span><span>CUSTOM LOBBIES</span><span>3V3</span><span class="hot">CUPS</span><span>SCRIMS</span><span>TEAM-FINDER</span><span class="hot">TIKTOK CLIPS</span><span>MECHANIK-TRAINING</span>
+    </div>
+  </div>
+
+  <section id="bereiche">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Server-Bereiche</span>
+        <h2>Was dich erwartet</h2>
+        <p>Fünf Bereiche, ein Server &mdash; von der ersten Ranked-Session bis zum nächsten Turnier.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card lead">
+          <div class="f-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 32L24 6L30 16L14 42L6 32Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M22 42L34 16L42 16L30 42L22 42Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <span class="f-tag">01 &middot; KERNTHEMA</span>
+            <h3>Rocket League</h3>
+            <p>Training, Ranked und gemeinsame Sessions &mdash; vom Warm-up bis zum Grind auf den nächsten Rang.</p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 8H34V20C34 26 30 30 24 30C18 30 14 26 14 20V8Z" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M14 12H8V16C8 20 11 22 14 22" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M34 12H40V16C40 20 37 22 34 22" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M24 30V36" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M16 40H32" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <span class="f-tag">02</span>
+          <h3>E-Sport &amp; Turniere</h3>
+          <p>Matches, Cups und Team-Erfolge &mdash; für alle, die es auch mal ernst meinen wollen.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="6" stroke="currentColor" stroke-width="2.5"/>
+              <circle cx="33" cy="18" r="5" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M6 40C6 32 10 27 16 27C22 27 26 32 26 40" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M28 30C33 30 42 33 42 40" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <span class="f-tag">03</span>
+          <h3>Mitspieler &amp; Teams</h3>
+          <p>Finde passende Mates für dein nächstes Game &mdash; nach Rang, Rolle und Spielzeit.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 22L30 12V34L6 26V22Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M30 17L42 12" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M30 29L42 34" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M12 26V34C12 36 14 38 16 37L18 36" stroke="currentColor" stroke-width="2.5"/>
+            </svg>
+          </div>
+          <span class="f-tag">04</span>
+          <h3>News &amp; Events</h3>
+          <p>Bleib bei Ankündigungen und TikTok-Projekten dabei &mdash; nichts verpassen, nichts nachfragen.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 12H36V28H16L8 36V28H6V12Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M22 20H32V34L26 30H22V20Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" fill="var(--bg-raise)"/>
+            </svg>
+          </div>
+          <span class="f-tag">05</span>
+          <h3>Community</h3>
+          <p>Austausch, Support und gute Vibes rund um den Server &mdash; auch abseits vom Spielfeld.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="wissen">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Rocket-League-Wissen</span>
+        <h2>Bevor du reinstartest</h2>
+        <p>Ränge, Spielmodi und die große Bühne des Spiels &mdash; kurz erklärt, für den Talk im Server.</p>
+      </div>
+
+      <div class="knowledge-block">
+        <div class="k-head">
+          <h3>Rang-Leiter</h3>
+          <span class="k-note">22 Stufen &middot; eigenes MMR pro Playlist</span>
+        </div>
+        <div class="rank-ladder" aria-hidden="true">
+          <div class="rank-bar" style="--i:0"></div>
+          <div class="rank-bar" style="--i:1"></div>
+          <div class="rank-bar" style="--i:2"></div>
+          <div class="rank-bar" style="--i:3"></div>
+          <div class="rank-bar" style="--i:4"></div>
+          <div class="rank-bar" style="--i:5"></div>
+          <div class="rank-bar" style="--i:6"></div>
+          <div class="rank-bar ssl" style="--i:7"></div>
+        </div>
+        <div class="rank-legend">
+          <span>Bronze</span><span>Silber</span><span>Gold</span><span>Platin</span>
+          <span>Diamant</span><span>Champion</span><span>Grand Champion</span>
+          <span class="top">Supersonic Legend</span>
+        </div>
+      </div>
+
+      <div class="knowledge-block">
+        <div class="k-head">
+          <h3>Spielmodi</h3>
+        </div>
+        <div class="modes-grid">
+          <div>
+            <span class="k-note">Ranked-Playlists</span>
+            <ul class="mode-list">
+              <li><span class="mono">1v1</span> Duel</li>
+              <li><span class="mono">2v2</span> Doubles</li>
+              <li><span class="mono">3v3</span> Standard</li>
+            </ul>
+          </div>
+          <div>
+            <span class="k-note">Extra-Modi für zwischendurch</span>
+            <ul class="mode-list mode-list--extra">
+              <li>Hoops</li>
+              <li>Rumble</li>
+              <li>Snow Day</li>
+              <li>Dropshot</li>
+              <li>Heatseeker</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="knowledge-block">
+        <div class="k-head">
+          <h3>Die große Bühne &mdash; RLCS</h3>
+          <span class="k-note">Saison 2026</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat-tile">
+            <span class="stat-num">7</span>
+            <span class="stat-label">Regionen weltweit im Wettbewerb</span>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-num">2 Splits</span>
+            <span class="stat-label">je mit Opens &amp; Majors</span>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-num">6,1 Mio. $</span>
+            <span class="stat-label">Preisgeld-Pool der Saison</span>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-num">Fort Worth</span>
+            <span class="stat-label">World Championship &middot; Dickies Arena</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="start">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">So startest du</span>
+        <h2>Dein erster Zug</h2>
+        <p>Vier Schritte zwischen Beitritt und erstem gemeinsamen Match.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Ankommen &amp; Regeln lesen</h3>
+          <p>Kurz umsehen, Serverregeln checken &mdash; damit sich alle auf lange Sicht wohlfühlen.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Rollen holen</h3>
+          <p>Rang, Plattform und Region angeben, damit dich die richtigen Leute finden.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Team oder Lobby finden</h3>
+          <p>Im Teamsuche-Bereich nach Mates fürs nächste Ranked oder den nächsten Cup schauen.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h3>Zocken &amp; connecten</h3>
+          <p>Rein in die Lobby, Boost holen, ins Gespräch kommen &mdash; willkommen im Team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="beitreten">
+    <div class="cta-band wrap">
+      <svg class="cta-visual" viewBox="0 0 400 400" preserveAspectRatio="xMaxYMax slice" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 340L210 40L260 140L110 360Z" fill="#b266ff"/>
+        <path d="M180 360L290 140L370 140L260 360Z" fill="#ffffff"/>
+      </svg>
+      <div class="cta-content">
+        <span class="eyebrow" style="justify-content:center;">Bereit für den Anpfiff?</span>
+        <h2>One Team. <span class="accent-line">One Goal.</span><br>Sephora E-Sports.</h2>
+        <p>Schau dich in Ruhe um, lies die Regeln und komm gern ins Gespräch &mdash; wir freuen uns auf dich.</p>
+        <a class="btn btn-primary" href="https://discord.gg/37sKKK6t8" target="_blank" rel="noopener noreferrer">Jetzt beitreten</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:4px;">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 26L16 4L20 12L8 26H4Z" fill="#b266ff"/>
+            <path d="M14 26L22 12L28 12L20 26H14Z" fill="#ffffff"/>
+          </svg>
+          <span class="brand-word">Sephora <span>E-Sports</span></span>
+        </a>
+        <p class="footer-note">
+          Unabhängige Rocket-League-Community. Kein Zusammenhang mit Unternehmen, die denselben oder
+          ähnliche Namen führen.
+        </p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#bereiche">Server-Bereiche</a></li>
+        <li><a href="#wissen">Wissen</a></li>
+        <li><a href="#start">Einstieg</a></li>
+        <li><a href="#beitreten">Regeln</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">SEPHORA E-SPORTS &middot; ROCKET LEAGUE COMMUNITY</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var toggle = document.getElementById('navToggle');
+  var panel = document.getElementById('navMobile');
+  if(!toggle || !panel) return;
+
+  function closeMenu(){
+    toggle.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+  }
+  function openMenu(){
+    toggle.setAttribute('aria-expanded', 'true');
+    panel.hidden = false;
+  }
+
+  toggle.addEventListener('click', function(){
+    var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    if(isOpen){ closeMenu(); } else { openMenu(); }
+  });
+  panel.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){ closeMenu(); }
+  });
+  document.addEventListener('click', function(e){
+    if(!panel.hidden && !panel.contains(e.target) && !toggle.contains(e.target)){
+      closeMenu();
+    }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeMenu(); }
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 840){ closeMenu(); }
+  });
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.21/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var HEADER_OFFSET = 84;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var lenis = null;
+
+  /* ---- Momentum scroll (Lenis), with a plain-scroll fallback ---- */
+  if(!reduceMotion && typeof Lenis === 'function'){
+    lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+    document.documentElement.style.scrollBehavior = 'auto';
+    requestAnimationFrame(function raf(time){
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    });
+  }
+
+  /* ---- Anchor links scroll to their section with header clearance ---- */
+  document.addEventListener('click', function(e){
+    var link = e.target.closest('a[href^="#"]');
+    if(!link) return;
+    var target = document.getElementById(link.getAttribute('href').slice(1));
+    if(!target) return;
+    e.preventDefault();
+    if(lenis){
+      lenis.scrollTo(target, { offset: -HEADER_OFFSET });
+    } else {
+      var top = target.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
+      window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+  });
+
+  /* ---- Hero intro: text and visual settle in the moment the page loads ---- */
+  if(!reduceMotion){
+    var heroItems = document.querySelectorAll('.hero-text > *');
+    Array.prototype.forEach.call(heroItems, function(item, i){
+      item.animate(
+        [{ transform: 'translateY(28px)' }, { transform: 'translateY(0)' }],
+        { duration: 720, delay: 120 + i * 90, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'none' }
+      );
+    });
+  }
+
+  /* ---- Numbers count up from zero the moment their tile is read ---- */
+  function animateCount(el){
+    var text = el.textContent.trim();
+    var m = text.match(/^(\d+)(?:,(\d+))?/);
+    if(!m) return;
+    var suffix = text.slice(m[0].length);
+    var hasDecimal = !!m[2];
+    var target = parseFloat(m[1] + (hasDecimal ? '.' + m[2] : ''));
+    var start = null;
+    var dur = 900;
+    function format(v){
+      return (hasDecimal ? v.toFixed(1).replace('.', ',') : Math.round(v).toString()) + suffix;
+    }
+    function frame(now){
+      if(start === null) start = now;
+      var t = Math.min((now - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = format(target * eased);
+      if(t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ---- Content settles into place on scroll-in (transform only, never opacity 0) ---- */
+  if(!reduceMotion && 'IntersectionObserver' in window){
+    var groups = document.querySelectorAll('.feature-grid, .stat-row, .steps, .modes-grid, .rank-legend');
+    groups.forEach(function(group){
+      var items = group.children;
+      var io = new IntersectionObserver(function(entries, obs){
+        entries.forEach(function(entry){
+          if(!entry.isIntersecting) return;
+          Array.prototype.forEach.call(items, function(item, i){
+            item.animate(
+              [{ transform: 'translateY(26px)' }, { transform: 'translateY(0)' }],
+              { duration: 650, delay: i * 80, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'none' }
+            );
+          });
+          if(group.classList.contains('stat-row')){
+            group.querySelectorAll('.stat-num').forEach(function(el){
+              setTimeout(function(){ animateCount(el); }, 150);
+            });
+          }
+          obs.disconnect();
+        });
+      }, { threshold: 0.2 });
+      io.observe(group);
+    });
+
+    var ladder = document.querySelector('.rank-ladder');
+    if(ladder){
+      var bars = ladder.querySelectorAll('.rank-bar');
+      var ladderIo = new IntersectionObserver(function(entries, obs){
+        entries.forEach(function(entry){
+          if(!entry.isIntersecting) return;
+          bars.forEach(function(bar, i){
+            bar.animate(
+              [{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }],
+              { duration: 450, delay: i * 45, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'none' }
+            );
+          });
+          obs.disconnect();
+        });
+      }, { threshold: 0.4 });
+      ladderIo.observe(ladder);
+    }
+  }
+
+  /* ---- Cards tilt toward the pointer ---- */
+  if(!reduceMotion && canHover){
+    document.querySelectorAll('.feature-card, .stat-tile').forEach(function(el){
+      el.addEventListener('pointermove', function(e){
+        var r = el.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = 'perspective(700px) rotateX(' + (-py * 5) + 'deg) rotateY(' + (px * 5) + 'deg) translateY(-2px)';
+      });
+      el.addEventListener('pointerleave', function(){
+        el.style.transform = '';
+      });
+    });
+  }
+})();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canvas = document.getElementById('heroFx');
+  var hero = document.querySelector('.hero');
+  if(reduceMotion || !canvas || !hero || typeof THREE === 'undefined') return;
+
+  var renderer;
+  try{
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+  }catch(e){ return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+  camera.position.z = 22;
+
+  /* boost-spark particle field */
+  var COUNT = 220;
+  var positions = new Float32Array(COUNT * 3);
+  for(var i = 0; i < COUNT; i++){
+    positions[i * 3 + 0] = (Math.random() - 0.5) * 50;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 28;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 22;
+  }
+  var geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+  var spriteCanvas = document.createElement('canvas');
+  spriteCanvas.width = spriteCanvas.height = 32;
+  var sctx = spriteCanvas.getContext('2d');
+  var grd = sctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+  grd.addColorStop(0, 'rgba(255,255,255,1)');
+  grd.addColorStop(0.4, 'rgba(178,102,255,0.9)');
+  grd.addColorStop(1, 'rgba(178,102,255,0)');
+  sctx.fillStyle = grd;
+  sctx.fillRect(0, 0, 32, 32);
+  var spriteTex = new THREE.CanvasTexture(spriteCanvas);
+
+  var points = new THREE.Points(geo, new THREE.PointsMaterial({
+    size: 0.65,
+    map: spriteTex,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending
+  }));
+  scene.add(points);
+
+  var mouseX = 0, mouseY = 0;
+  hero.addEventListener('pointermove', function(e){
+    var r = hero.getBoundingClientRect();
+    mouseX = (e.clientX - r.left) / r.width - 0.5;
+    mouseY = (e.clientY - r.top) / r.height - 0.5;
+  });
+
+  function resize(){
+    var w = hero.clientWidth, h = hero.clientHeight;
+    if(!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var running = true;
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      running = entries[0].isIntersecting;
+    }).observe(hero);
+  }
+
+  var clock = new THREE.Clock();
+  function tick(){
+    requestAnimationFrame(tick);
+    if(!running) return;
+    var dt = Math.min(clock.getDelta(), 0.05);
+    points.rotation.y += dt * 0.03;
+    camera.position.x += (mouseX * 2.2 - camera.position.x) * 0.03;
+    camera.position.y += (-mouseY * 1.4 - camera.position.y) * 0.03;
+    camera.lookAt(0, 0, 0);
+
+    renderer.render(scene, camera);
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
